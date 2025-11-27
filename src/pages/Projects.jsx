@@ -4,6 +4,7 @@ import ProjectCard from '../components/ui/ProjectCard';
 
 const Projects = ({ theme }) => {
   const [filter, setFilter] = useState('All');
+  const [expandedProjectId, setExpandedProjectId] = useState(null);
   const isForest = theme === 'forest';
 
   const categories = ['All', 'Professional', 'Academic'];
@@ -11,6 +12,10 @@ const Projects = ({ theme }) => {
   const filteredProjects = filter === 'All'
     ? projects
     : projects.filter(project => project.category === filter);
+
+  const handleToggleExpand = (projectId) => {
+    setExpandedProjectId(expandedProjectId === projectId ? null : projectId);
+  };
 
   return (
     <div className={`min-h-screen py-12 ${
@@ -26,7 +31,7 @@ const Projects = ({ theme }) => {
           <p className={`text-lg mb-8 ${
             isForest ? 'text-stone-700' : 'text-slate-700'
           }`}>
-            A showcase of my engineering work, from professional projects at ACME Overland to academic research.
+            A collection of some of my academic and professional work.
           </p>
 
           {/* Filter Buttons */}
@@ -52,9 +57,16 @@ const Projects = ({ theme }) => {
         </div>
 
         {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+        <div className="columns-1 md:columns-2 gap-6 space-y-6">
           {filteredProjects.map((project) => (
-            <ProjectCard key={project.id} project={project} theme={theme} />
+            <div key={project.id} className="break-inside-avoid">
+              <ProjectCard
+                project={project}
+                theme={theme}
+                isExpanded={expandedProjectId === project.id}
+                onToggleExpand={() => handleToggleExpand(project.id)}
+              />
+            </div>
           ))}
         </div>
 

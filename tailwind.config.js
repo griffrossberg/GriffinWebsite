@@ -10,7 +10,7 @@ export default {
         // Forest Theme
         forest: {
           primary: '#064e3b',      // Emerald 900
-          accent: '#059669',       // Emerald 600
+          accent: '#047857',       // Emerald 700 (darker)
           bg: '#fafaf9',          // Stone 50
           text: '#292524',        // Stone 800
         },

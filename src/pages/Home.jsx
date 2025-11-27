@@ -1,33 +1,14 @@
 import { personalInfo } from '../data/personalInfo';
-import { ArrowRight, Wrench, Code, Lightbulb } from 'lucide-react';
 
-const Home = ({ theme }) => {
+const Home = ({ theme, setCurrentView }) => {
   const isForest = theme === 'forest';
 
-  const highlights = [
-    {
-      icon: Wrench,
-      title: 'CAD Expert',
-      description: 'CSWP Certified in SolidWorks with expertise in GD&T and FEA'
-    },
-    {
-      icon: Code,
-      title: 'Technical Skills',
-      description: 'Proficient in Python, MATLAB, and engineering simulation tools'
-    },
-    {
-      icon: Lightbulb,
-      title: 'Problem Solver',
-      description: 'Proven track record of innovative solutions in manufacturing and design'
-    }
-  ];
-
   return (
-    <div className={`min-h-screen flex items-center justify-center ${
+    <div className={`h-screen flex items-center justify-center overflow-hidden ${
       isForest ? 'bg-stone-50' : 'bg-slate-50'
     } transition-colors duration-300`}>
-      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="text-center mb-12">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="text-center">
           <h1 className={`text-5xl md:text-6xl font-bold mb-6 tracking-tight ${
             isForest ? 'text-stone-800' : 'text-slate-900'
           }`}>
@@ -38,11 +19,31 @@ const Home = ({ theme }) => {
           }`}>
             {personalInfo.title}
           </h2>
-          <p className={`text-lg max-w-2xl mx-auto leading-relaxed mb-8 ${
-            isForest ? 'text-stone-700' : 'text-slate-700'
-          }`}>
-            {personalInfo.bio}
-          </p>
+
+          {/* Buttons */}
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
+            <button
+              onClick={() => setCurrentView('resume')}
+              className={`px-8 py-3 rounded-lg font-semibold transition-colors ${
+                isForest
+                  ? 'bg-emerald-600 text-white hover:bg-emerald-700'
+                  : 'bg-blue-600 text-white hover:bg-blue-700'
+              }`}
+            >
+              View Resume
+            </button>
+            <button
+              onClick={() => setCurrentView('projects')}
+              className={`px-8 py-3 rounded-lg font-semibold transition-colors ${
+                isForest
+                  ? 'bg-white text-emerald-600 border-2 border-emerald-600 hover:bg-emerald-50'
+                  : 'bg-white text-blue-600 border-2 border-blue-600 hover:bg-blue-50'
+              }`}
+            >
+              View Projects
+            </button>
+          </div>
+
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
             <span className={`flex items-center gap-2 ${
               isForest ? 'text-stone-600' : 'text-slate-600'
@@ -61,39 +62,6 @@ const Home = ({ theme }) => {
               {personalInfo.university}
             </span>
           </div>
-        </div>
-
-        {/* Highlights Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mt-12">
-          {highlights.map((item, index) => {
-            const Icon = item.icon;
-            return (
-              <div
-                key={index}
-                className={`bg-white rounded-lg shadow-sm p-6 text-center hover:shadow-md transition-shadow ${
-                  isForest ? 'border border-stone-100' : 'border border-slate-100'
-                }`}
-              >
-                <div className={`inline-flex items-center justify-center w-12 h-12 rounded-full mb-4 ${
-                  isForest ? 'bg-emerald-100' : 'bg-blue-100'
-                }`}>
-                  <Icon className={`w-6 h-6 ${
-                    isForest ? 'text-emerald-600' : 'text-blue-600'
-                  }`} />
-                </div>
-                <h3 className={`text-lg font-semibold mb-2 ${
-                  isForest ? 'text-stone-800' : 'text-slate-900'
-                }`}>
-                  {item.title}
-                </h3>
-                <p className={`text-sm ${
-                  isForest ? 'text-stone-600' : 'text-slate-600'
-                }`}>
-                  {item.description}
-                </p>
-              </div>
-            );
-          })}
         </div>
       </div>
     </div>

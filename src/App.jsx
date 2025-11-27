@@ -8,30 +8,13 @@ import Contact from './pages/Contact';
 
 function App() {
   const [currentView, setCurrentView] = useState('home');
-  const [theme, setTheme] = useState('forest');
-
-  // Load theme from localStorage on mount
-  useEffect(() => {
-    const savedTheme = localStorage.getItem('theme');
-    if (savedTheme) {
-      setTheme(savedTheme);
-    }
-  }, []);
-
-  // Save theme to localStorage when it changes
-  useEffect(() => {
-    localStorage.setItem('theme', theme);
-  }, [theme]);
-
-  const toggleTheme = () => {
-    setTheme((prevTheme) => (prevTheme === 'forest' ? 'bright' : 'forest'));
-  };
+  const theme = 'forest'; // Fixed to forest theme
 
   // Render the current view
   const renderView = () => {
     switch (currentView) {
       case 'home':
-        return <Home theme={theme} />;
+        return <Home theme={theme} setCurrentView={setCurrentView} />;
       case 'projects':
         return <Projects theme={theme} />;
       case 'resume':
@@ -39,7 +22,7 @@ function App() {
       case 'contact':
         return <Contact theme={theme} />;
       default:
-        return <Home theme={theme} />;
+        return <Home theme={theme} setCurrentView={setCurrentView} />;
     }
   };
 
@@ -49,7 +32,6 @@ function App() {
         currentView={currentView}
         setCurrentView={setCurrentView}
         theme={theme}
-        toggleTheme={toggleTheme}
       />
       <main className="flex-grow">
         {renderView()}

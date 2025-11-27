@@ -1,14 +1,13 @@
 import { Menu, X } from 'lucide-react';
 import { useState } from 'react';
 
-const Navbar = ({ currentView, setCurrentView, theme, toggleTheme }) => {
+const Navbar = ({ currentView, setCurrentView, theme }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const navItems = [
     { id: 'home', label: 'Home' },
-    { id: 'projects', label: 'Projects' },
     { id: 'resume', label: 'Resume' },
-    { id: 'contact', label: 'Contact' }
+    { id: 'projects', label: 'Projects' }
   ];
 
   const handleNavClick = (viewId) => {
@@ -26,9 +25,12 @@ const Navbar = ({ currentView, setCurrentView, theme, toggleTheme }) => {
         <div className="flex justify-between items-center h-16">
           {/* Logo/Name */}
           <div className="flex-shrink-0">
-            <h1 className={`text-2xl font-bold ${isForest ? 'text-emerald-900' : 'text-blue-600'} transition-colors duration-300`}>
+            <button
+              onClick={() => handleNavClick('home')}
+              className={`text-2xl font-bold ${isForest ? 'text-emerald-900' : 'text-blue-600'} transition-colors duration-300 hover:opacity-80`}
+            >
               Griffin Rossberg
-            </h1>
+            </button>
           </div>
 
           {/* Desktop Navigation */}
@@ -47,17 +49,6 @@ const Navbar = ({ currentView, setCurrentView, theme, toggleTheme }) => {
                 {item.label}
               </button>
             ))}
-          </div>
-
-          {/* Theme Toggle */}
-          <div className="hidden md:block">
-            <button
-              onClick={toggleTheme}
-              className={`px-4 py-2 rounded-lg ${isForest ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-orange-500 hover:bg-orange-600'} text-white transition-colors`}
-              aria-label={`Switch to ${theme === 'forest' ? 'bright' : 'forest'} theme`}
-            >
-              {theme === 'forest' ? 'Bright' : 'Forest'}
-            </button>
           </div>
 
           {/* Mobile menu button */}
@@ -90,12 +81,6 @@ const Navbar = ({ currentView, setCurrentView, theme, toggleTheme }) => {
                 {item.label}
               </button>
             ))}
-            <button
-              onClick={toggleTheme}
-              className={`block w-full text-left px-3 py-2 rounded-lg text-base font-medium ${isForest ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-orange-500 hover:bg-orange-600'} text-white`}
-            >
-              Switch to {theme === 'forest' ? 'Bright' : 'Forest'} Theme
-            </button>
           </div>
         </div>
       )}
