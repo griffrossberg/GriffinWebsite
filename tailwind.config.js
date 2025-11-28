@@ -9,8 +9,8 @@ export default {
       colors: {
         // Forest Theme
         forest: {
-          primary: '#7f1d1d',      // Red 900
-          accent: '#dc2626',       // Red 600
+          primary: '#064e3b',      // Emerald 900
+          accent: '#047857',       // Emerald 700 (darker)
           bg: '#fafaf9',          // Stone 50
           text: '#292524',        // Stone 800
         },
