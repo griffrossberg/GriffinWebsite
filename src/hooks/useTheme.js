@@ -25,17 +25,17 @@ export const useTheme = () => {
       return {
         bg: 'bg-stone-50',
         text: 'text-stone-800',
-        primary: 'bg-emerald-900 text-white',
-        primaryText: 'text-emerald-900',
-        accent: 'bg-emerald-600 text-white',
-        accentHover: 'hover:bg-emerald-700',
-        accentText: 'text-emerald-600',
+        primary: 'bg-red-900 text-white',
+        primaryText: 'text-red-900',
+        accent: 'bg-red-600 text-white',
+        accentHover: 'hover:bg-red-700',
+        accentText: 'text-red-600',
         card: 'bg-white',
         border: 'border-stone-200',
         navbar: 'bg-white',
         footer: 'bg-stone-800 text-stone-200',
-        button: 'bg-emerald-600 hover:bg-emerald-700 text-white',
-        buttonOutline: 'border-emerald-600 text-emerald-600 hover:bg-emerald-50',
+        button: 'bg-red-600 hover:bg-red-700 text-white',
+        buttonOutline: 'border-red-600 text-red-600 hover:bg-red-50',
       };
     } else {
       return {
